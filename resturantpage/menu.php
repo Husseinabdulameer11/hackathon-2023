@@ -248,9 +248,13 @@ var inCart=[];
   AddToCartbtns.forEach(AddToCartbtn=>{AddToCartbtn.addEventListener('click',()=>{
 
 	const product_allContent=AddToCartbtn.parentNode;
+  let amount = Number(product_allContent.querySelector('.amountnum').value);
+  if(amount<=0){
+    amount=1;
+  }
 	const product={
 name:product_allContent.querySelector('.product_info').innerText,
-		amount:Number(product_allContent.querySelector('.amountnum').value),
+		amount:amount,
 		price:Number(product_allContent.querySelector('.number').innerText),
 		price_text:"price: "
 	}
