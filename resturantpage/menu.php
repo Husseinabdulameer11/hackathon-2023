@@ -70,7 +70,7 @@ include("db.php");
     </div>
 
          <h4 id="total-amount"></h4>
-			<button id="remove">Empty Cart</button>
+			<button id="remove" class="removebtn" disabled>Empty Cart</button>
       <button type="submit"disabled id="paybtn" class="paybtn">pay now</button>
       </form>
 </div> 
@@ -278,6 +278,7 @@ name:product_allContent.querySelector('.product_info').innerText,
 	
 
 		inCart.push(product);
+    document.querySelector(".removebtn").disabled=false;
     document.querySelector(".paybtn").disabled=false;
     countCartTotal();
     deletecookie(cart,inCart)
@@ -322,6 +323,7 @@ var totalrender=document.getElementById("total-amount");
 
 function deletea(){
   document.querySelector(".paybtn").disabled=true;
+  document.querySelector(".removebtn").disabled=true;
 
 var list=document.getElementById("list-of-items")
 list.innerHTML="<div></div>"
