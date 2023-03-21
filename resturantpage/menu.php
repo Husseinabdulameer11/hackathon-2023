@@ -70,7 +70,7 @@ include("db.php");
     </div>
 
          <h4 id="total-amount"></h4>
-			<button id="remove">Empty Cart</button>
+			<button id="remove" class="removebtn" disabled>Empty Cart</button>
       <button type="submit"disabled id="paybtn" class="paybtn">pay now</button>
       </form>
 </div> 
@@ -248,9 +248,13 @@ var inCart=[];
   AddToCartbtns.forEach(AddToCartbtn=>{AddToCartbtn.addEventListener('click',()=>{
 
 	const product_allContent=AddToCartbtn.parentNode;
+  let amount = Number(product_allContent.querySelector('.amountnum').value);
+  if(amount<=0){
+    amount=1;
+  }
 	const product={
 name:product_allContent.querySelector('.product_info').innerText,
-		amount:Number(product_allContent.querySelector('.amountnum').value),
+		amount:amount,
 		price:Number(product_allContent.querySelector('.number').innerText),
 		price_text:"price: "
 	}
@@ -274,6 +278,7 @@ name:product_allContent.querySelector('.product_info').innerText,
 	
 
 		inCart.push(product);
+    document.querySelector(".removebtn").disabled=false;
     document.querySelector(".paybtn").disabled=false;
     countCartTotal();
     deletecookie(cart,inCart)
@@ -318,6 +323,7 @@ var totalrender=document.getElementById("total-amount");
 
 function deletea(){
   document.querySelector(".paybtn").disabled=true;
+  document.querySelector(".removebtn").disabled=true;
 
 var list=document.getElementById("list-of-items")
 list.innerHTML="<div></div>"
